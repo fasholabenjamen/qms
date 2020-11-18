@@ -8,7 +8,13 @@
               
             </div>
           </div>
-
+          <div class="jumbotron">
+            <h1 class="display-4">QMS</h1>
+            <p class="lead">Welcome to Question Management System, {{ $no_of_questions }} questions available in the database</p>
+            <hr class="my-4">
+            <p>Click below to see list of available Question</p>
+            <a class="btn btn-primary btn-lg" href="{{ route('question.index') }}" role="button">Show Qestions</a>
+          </div>
         </main>
       </div>
     </div>

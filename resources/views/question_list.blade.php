@@ -51,9 +51,10 @@
               <tbody>
                @if($questions->count())
                 {{ $questions->links() }}
+                <?php $sn=1 ?>
                 @foreach ($questions as $question )
                 <tr>
-                  <td>{{ $question->id }}</td>
+                  <td>{{ $sn }}</td>
                   <td>{{ $question->question }}</td>
                   <td>{{ $question->is_general ==1 ? 'TRUE' : 'FALSE'}}</td>
                   <td>{{ $question->categories }}</td>
@@ -67,6 +68,7 @@
              </form>
                   </td>
                 </tr>
+                <?php $sn++ ?>
                 @endforeach
                @else
                <tr>

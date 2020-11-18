@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Question;
-use App\Choice;
-use Importer;
 
 class HomeController extends Controller
 {
@@ -28,7 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $no_of_questions=Question::count();
+        return view('dashboard')->with('no_of_questions',$no_of_questions);
     }
    
     
