@@ -19,8 +19,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/question/add','QuestionController@add_question')->name('add_question');
+Route::post('/question/add','QuestionController@add_question')->name('add_question_post');
 Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::resource('/question','QuestionController');
 Route::resource('/choice','ChoiceController');
 Route::get('/question/sort/{categories}','QuestionController@sort')->name('sort');
-Route::get('choice/create/{id}','ChoiceController@create_choice')->name('create_choice');
+Route::get('/choice/create/{id}','ChoiceController@create_choice')->name('create_choice');

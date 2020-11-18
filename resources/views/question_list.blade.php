@@ -72,7 +72,7 @@
                 @endforeach
                @else
                <tr>
-                  <td>No Question Available</td>
+                  <td colspan="9">No Question Available</td>
                 </tr>
                @endif
               </tbody>

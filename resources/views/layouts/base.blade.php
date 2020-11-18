@@ -46,8 +46,14 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="{{ route('add_question') }}">
+                  <span data-feather="plus"></span>
+                  Add a Question
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="{{ route('question.create') }}">
-                  <span data-feather="file"></span>
+                  <span data-feather="upload"></span>
                   Upload Question
                 </a>
               </li>

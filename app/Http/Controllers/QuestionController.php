@@ -186,6 +186,28 @@ class QuestionController extends Controller
     
     }
 
+    public function add_question(Request $request){
+        if($_POST){
+            $request->validate([
+            'question'=>'required|string',
+            'is_general'=>'required|boolean',
+            'categories'=>'required|string',
+            'point'=>'required|integer',
+            'duration'=>'required|integer',
+            ]);
+        $question =new Question;
+        $question->question=$request->input('question');
+        $question->is_general=$request->input('is_general');
+        $question->categories=$request->input('categories');
+        $question->point=$request->input('point');
+        $question->icon_url=$request->input('icon_url');
+        $question->duration=$request->input('duration');
+        $question->save();
+        return redirect()->route('question.show',$question->id);
+        }
+        return view('add_question');
+    }
+    
     public function sort($category=null){
         $questions=Question::where('categories',$category)->paginate(40);
         $categories=Question::select('categories')->distinct()->get('categories');
