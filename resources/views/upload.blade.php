@@ -17,6 +17,7 @@
                   <label for="file_upload">Select Excel File</label>
                   <input type="file" class="form-control-file" accept=".csv,.xls,.xlsx" name="file" required id="file_upload">
                 </div>
+                 <button type="submit" class="btn btn-primary">Submit</button>
                 @if(session('errors'))
                   @foreach ($errors as $error)
                       <li>{{ $error }}</li>
@@ -25,7 +26,7 @@
                 @if(session('success'))
                  <li>{{ session('success') }}</li>
                 @endif
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                 
               </form>
             </div>
           </div>

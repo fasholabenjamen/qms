@@ -85,9 +85,7 @@
                     Question Management System
             </h2>
             <h3>
-                    Please login with this credential to access the dashboard or Register. <br />
-                    Email: user@user.com <br />
-                    Password: user1234
+                   Please Register or Login to access the dashboard
 
             </h3>  
 
