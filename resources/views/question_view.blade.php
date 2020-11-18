@@ -6,7 +6,16 @@
             <h1 class="h2">Question & Choices</h1>
             
           </div>
-
+          <div style="color:green;"><h4>
+          @if(session('errors'))
+                  @foreach ($errors as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+                @endif
+                @if(session('success'))
+                 {{ session('success') }}
+            @endif </h4>
+          </div>
           <h4>Question: {{ $question->question }}</h4>
           <table class="table table-striped table-sm">
           <tr>
@@ -17,9 +26,12 @@
             <td>Duration : {{ $question->duration }}</td>
           </tr>
            <tr>
-            <td><button type="button" class="btn btn-primary">Edit Qustion</button></td>
-             <td><button type="button" class="btn btn-danger">Delete Qustion</button></td>
-            <td colspan="3"><button type="button" class="btn btn-primary">Add new Choice</button></td>
+            <td><a href="{{ route('question.edit',$question->id) }}"><button type="button" class="btn btn-primary">Edit Question</button></a></td>
+             <td><form action="{{ route('question.destroy',$question->id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete?')">
+                @method('DELETE') @csrf 
+                <input type="submit" class="btn btn-danger" value="Delete Question" />
+             </form></td>
+            <td colspan="3"><a href="{{ route('create_choice',$question->id) }}"><button type="button" class="btn btn-primary">Add New Choice</button></a></td>
         
           </tr>
           </table>
@@ -49,8 +61,12 @@
                   <td>{{ $choice->description }}</td>
                   <td>{{ $choice->is_correct_choice==1 ? 'TRUE':'FALSE' }}</td>
                   <td>{{ $choice->icon_url }}</td>
-                  <td><button type="button" class="btn btn-primary">Edit</button></td>
-                  <td><button type="button" class="btn btn-danger">Delete</button></td>
+                  <td><a href="{{ route('choice.edit',$choice->id) }}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+                  <td><form action="{{ route('choice.destroy',$choice->id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete?')">
+                      @method('DELETE') @csrf 
+                      <input type="submit" class="btn btn-danger" value="Delete" />
+                      </form>
+                  </td>
                 </tr>
                 @endforeach
         

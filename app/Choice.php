@@ -13,4 +13,7 @@ class Choice extends Model
         'is_correct_choice',
         'icon_url',
     ];
+    public function question(){
+        return $this->belongsTo('App\Question');
+    }
 }

@@ -21,4 +21,6 @@ Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::resource('/question','QuestionController');
+Route::resource('/choice','ChoiceController');
 Route::get('/question/sort/{categories}','QuestionController@sort')->name('sort');
+Route::get('choice/create/{id}','ChoiceController@create_choice')->name('create_choice');

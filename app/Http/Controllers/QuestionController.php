@@ -140,6 +140,7 @@ class QuestionController extends Controller
     public function edit(Question $question)
     {
         //
+        return view('edit_question')->with('question',$question);
     }
 
     /**
@@ -151,7 +152,23 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        $request->validate([
+            'question'=>'required|string',
+            'is_general'=>'required',
+            'category'=>'required',
+            'point'=>'required|integer',
+            'duration'=>'required|integer',
+        ]);
+        $question->where('id',$question->id)->update([
+            'question'=>$request->input('question'),
+            'is_general'=>$request->input('is_general'),
+            'categories'=>$request->input('category'),
+            'point'=>$request->input('point'),
+            'icon_url'=>$request->input('icon_url'),
+            'duration'=>$request->input('duration'),
+        ]);
+        
+        return redirect()->route('question.show',$question->id)->withSuccess('Question Updated Successfully');
     }
 
     /**
@@ -163,6 +180,10 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         //
+        $question->delete();
+        $question->choice()->delete();
+        return redirect()->route('question.index')->withSuccess('Question Deleted');
+    
     }
 
     public function sort($category=null){

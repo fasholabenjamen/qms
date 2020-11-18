@@ -5,7 +5,16 @@
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Questions</h1>
           </div>
-
+        <div style="color:green;"><h4>
+          @if(session('errors'))
+                  @foreach ($errors as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+                @endif
+                @if(session('success'))
+                 {{ session('success') }}
+            @endif </h4>
+          </div>
           <h3>List of Questions</h3>
           <div class="row">
             <div class="form-group col-4">
@@ -36,6 +45,7 @@
                   <th>Icon Url</th>
                   <th>Duration</th>
                   <th>Action</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -51,6 +61,11 @@
                   <td>{{ $question->icon_url }}</td>
                   <td>{{ $question->duration }}</td>
                   <td><a href="{{ route('question.show',$question->id) }}"> <button type="button" class="btn btn-primary">View</button></a></td>
+                  <td><form action="{{ route('question.destroy',$question->id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete?')">
+                @method('DELETE') @csrf 
+                <input type="submit" class="btn btn-danger" value="Delete" />
+             </form>
+                  </td>
                 </tr>
                 @endforeach
                @else
